@@ -73,17 +73,23 @@ header{
     height: 550px;
     
 }
-.technology-stack{
-   
-}
 .technology-stack h1{
     color: white;
     text-align: center;
     padding: 20px;
     font-size: 23px;
     font-weight: 300;
+}
+.technology-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
    
-
+}
+.technology-grid img{
+    width: 80px;
+    height: auto;
+    gap: 100px;
+    padding: 40px;
 }
 .services h1{
     color: white;
@@ -92,7 +98,6 @@ header{
     font-size: 23px;
     font-weight: 300;
 }
-
 footer{
     font-weight: 400;
 
