@@ -170,38 +170,39 @@ header img {
     position: absolute;
     top: 9%;
     left: 8%;
-    width: 55%;
+    width: 60%;
     line-height: 1.7;
     color: white;
-    padding: 20px;
+    padding: 10px;
 }
 
 .intro-overlay p {
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 300;
 }
 
 .intro-overlay a {
     text-decoration: none;
     color: white;
-    padding: 15px 20px;
+    padding: 10px 15px;
     background-color: #4D7B8E;
     border-radius: 20px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 300;
 }
 
 .intro-overlay a:hover {
     color: #4D7B8E;
     background-color: white;
-    font-weight: 600;
+    font-weight: bold;
+    font-size: 16px;
 }
 .technology-stack{
     margin-top: 20px;
     height: 400px;
 }
 .technology-stack h1{
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     text-align: center;
 
