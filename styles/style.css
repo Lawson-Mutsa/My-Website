@@ -1,104 +1,761 @@
 body{
-    background-image: url('../images/background.jpg');
+    background-image: url('../images/1.jpg');
     background-size: cover;
-    font-family: "TikTok Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: "TikTok Sans", sans-serif;  
 }
-header{
+/* ✅ Responsive Menu */
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    width: 100%;
+    background: #4D7B8E;
+    transition: all 0.6s ease-in-out;
+    z-index: 9999; /* ✅ ensures it overlays all content */
+}
+
+#active:checked ~ .wrapper {
+    right: 0;
+}
+
+.menu-btn {
+    position: absolute;
+    z-index: 10000; /* ✅ higher than wrapper */
+    right: 10px;
+    top: 10px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Hamburger Lines */
+.menu-btn span,
+.menu-btn::before,
+.menu-btn::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 30%;
+    width: 40%;
+    border-bottom: 2px solid #fff;
+    transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.menu-btn::before {
+    transform: translateY(-8px);
+}
+
+.menu-btn::after {
+    transform: translateY(8px);
+}
+
+/* ✅ Close (X) Transformation */
+#active:checked + .menu-btn span {
+    transform: scaleX(0);
+}
+
+#active:checked + .menu-btn::before {
+    transform: rotate(45deg);
+    border-color: #fff;
+}
+
+#active:checked + .menu-btn::after {
+    transform: rotate(-45deg);
+    border-color: #fff;
+}
+
+.close {
+    z-index: 9998;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: background .6s;
+}
+
+#active:checked ~ .close {
+    background: rgba(0, 0, 0, 0.5); /* ✅ optional dim effect */
+    pointer-events: auto;
+}
+
+/* ✅ Menu Links */
+.wrapper ul {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+}
+
+.wrapper ul li {
+    margin: 15px 0;
+}
+
+.wrapper ul li a {
+    text-decoration: none;
+    font-size: 20px;
     font-weight: 300;
+    padding: 5px 30px;
+    color: #fff;
+    border-radius: 50px;
+    position: relative;
+    line-height: 50px;
+    margin: 5px 30px;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-.header{
-    font-size: 25px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+
+.wrapper ul li a::after {
+    position: absolute;
+    content: "";
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+    transform: scaleY(0);
+    z-index: -1;
+    transition: transform 0.3s ease;
 }
-.header img{
+
+.wrapper ul li a:hover {
+ text-decoration: underline;
+}
+
+#active:checked ~ .wrapper ul li a {
+    opacity: 1;
+    transform: translateX(-100px);
+    transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1);
+    transition-delay: .6s;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* ✅ Header Logo */
+header img {
     width: 50px;
     height: auto;
-    padding: 10px;
+    margin-left: 10px;
+    margin-top: 15px;
+}
 
-}
-.header nav ul{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-.header nav ul li{
-    color: white;
-    list-style: none;
-}
-.header nav ul li a{
-    color: white;
-    text-decoration: none;
-}
-.introduction{
+/* ✅ Intro Section */
+.introduction {
+    margin-top: 20px;
     position: relative;
     width: 100%;
-    height: 550px;
+    height: auto;
     overflow: hidden;
 }
-.introduction video{
+
+.introduction video {
     width: 100%;
     height: auto;
-    object-fit: cover; 
+    object-fit: cover;
 }
+
 .intro-overlay {
-  position: absolute;
-  top: 13%;
-  left: 10%;
-  width: 30%;
-  height: auto;
-  line-height: 1.9;
-  color: white;
-  padding: 20px;
+    position: absolute;
+    top: 9%;
+    left: 8%;
+    width: 55%;
+    line-height: 1.7;
+    color: white;
+    padding: 20px;
 }
-.intro-overlay p{
-    font-size: 23px;
+
+.intro-overlay p {
+    font-size: 19px;
     font-weight: 300;
 }
-.intro-overlay a{
+
+.intro-overlay a {
     text-decoration: none;
     color: white;
     padding: 15px 20px;
     background-color: #4D7B8E;
     border-radius: 20px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
 }
-.intro-overlay a:hover{
+
+.intro-overlay a:hover {
     color: #4D7B8E;
     background-color: white;
-    font-weight: 400;
+    font-weight: 600;
 }
-.portfolio{
-    width: 100%;
-    height: 550px;
-    
+.technology-stack{
+    margin-top: 20px;
+    height: 400px;
 }
 .technology-stack h1{
+    font-size: 20px;
     color: white;
     text-align: center;
-    padding: 20px;
-    font-size: 23px;
-    font-weight: 300;
+
 }
 .technology-grid{
+    margin-top: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-   
+    gap: 50px;
+    
 }
-.technology-grid img{
-    width: 80px;
-    height: auto;
-    gap: 100px;
-    padding: 40px;
+
+@media (min-width:600px){
+
+    body{
+    background-image: url('../images/1.jpg');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: "TikTok Sans", sans-serif;  
 }
-.services h1{
-    color: white;
+/* ✅ Responsive Menu */
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    width: 100%;
+    background: #4D7B8E;
+    transition: all 0.6s ease-in-out;
+    z-index: 9999; /* ✅ ensures it overlays all content */
+}
+
+#active:checked ~ .wrapper {
+    right: 0;
+}
+
+.menu-btn {
+    position: absolute;
+    z-index: 10000; /* ✅ higher than wrapper */
+    right: 10px;
+    top: 10px;
+    height: 50px;
+    width: 50px;
     text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Hamburger Lines */
+.menu-btn span,
+.menu-btn::before,
+.menu-btn::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 30%;
+    width: 40%;
+    border-bottom: 2px solid #fff;
+    transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.menu-btn::before {
+    transform: translateY(-8px);
+}
+
+.menu-btn::after {
+    transform: translateY(8px);
+}
+
+/* ✅ Close (X) Transformation */
+#active:checked + .menu-btn span {
+    transform: scaleX(0);
+}
+
+#active:checked + .menu-btn::before {
+    transform: rotate(45deg);
+    border-color: #fff;
+}
+
+#active:checked + .menu-btn::after {
+    transform: rotate(-45deg);
+    border-color: #fff;
+}
+
+.close {
+    z-index: 9998;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: background .6s;
+}
+
+#active:checked ~ .close {
+    background: rgba(0, 0, 0, 0.5); /* ✅ optional dim effect */
+    pointer-events: auto;
+}
+
+/* ✅ Menu Links */
+.wrapper ul {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+}
+
+.wrapper ul li {
+    margin: 15px 0;
+}
+
+.wrapper ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 5px 30px;
+    color: #fff;
+    border-radius: 50px;
+    position: relative;
+    line-height: 50px;
+    margin: 5px 30px;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.wrapper ul li a::after {
+    position: absolute;
+    content: "";
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+    transform: scaleY(0);
+    z-index: -1;
+    transition: transform 0.3s ease;
+}
+
+.wrapper ul li a:hover {
+ text-decoration: underline;
+}
+
+#active:checked ~ .wrapper ul li a {
+    opacity: 1;
+    transform: translateX(-100px);
+    transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1);
+    transition-delay: .6s;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* ✅ Header Logo */
+header img {
+    width: 50px;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+/* ✅ Intro Section */
+.introduction {
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.introduction video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.intro-overlay {
+    position: absolute;
+    top: 12%;
+    left: 8%;
+    width: 50%;
+    line-height: 1.7;
+    color: white;
     padding: 20px;
-    font-size: 23px;
+}
+
+.intro-overlay p {
+    font-size: 19px;
     font-weight: 300;
 }
-footer{
-    font-weight: 400;
 
+.intro-overlay a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    background-color: #4D7B8E;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.intro-overlay a:hover {
+    color: #4D7B8E;
+    background-color: white;
+    font-weight: 600;
+}
+.technology-stack{
+    margin-top: 20px;
+    height: 400px;
+}
+.technology-stack h1{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+
+}
+.technology-grid{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 50px;
+    
+    }
+
+}
+
+@media (min-width:900px){
+    body{
+    background-image: url('../images/1.jpg');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: "TikTok Sans", sans-serif;  
+}
+/* ✅ Responsive Menu */
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    width: 100%;
+    background: #4D7B8E;
+    transition: all 0.6s ease-in-out;
+    z-index: 9999; /* ✅ ensures it overlays all content */
+}
+
+#active:checked ~ .wrapper {
+    right: 0;
+}
+
+.menu-btn {
+    position: absolute;
+    z-index: 10000; /* ✅ higher than wrapper */
+    right: 10px;
+    top: 10px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Hamburger Lines */
+.menu-btn span,
+.menu-btn::before,
+.menu-btn::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 30%;
+    width: 40%;
+    border-bottom: 2px solid #fff;
+    transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.menu-btn::before {
+    transform: translateY(-8px);
+}
+
+.menu-btn::after {
+    transform: translateY(8px);
+}
+
+/* ✅ Close (X) Transformation */
+#active:checked + .menu-btn span {
+    transform: scaleX(0);
+}
+
+#active:checked + .menu-btn::before {
+    transform: rotate(45deg);
+    border-color: #fff;
+}
+
+#active:checked + .menu-btn::after {
+    transform: rotate(-45deg);
+    border-color: #fff;
+}
+
+.close {
+    z-index: 9998;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: background .6s;
+}
+
+#active:checked ~ .close {
+    background: rgba(0, 0, 0, 0.5); /* ✅ optional dim effect */
+    pointer-events: auto;
+}
+
+/* ✅ Menu Links */
+.wrapper ul {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+}
+
+.wrapper ul li {
+    margin: 15px 0;
+}
+
+.wrapper ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 5px 30px;
+    color: #fff;
+    border-radius: 50px;
+    position: relative;
+    line-height: 50px;
+    margin: 5px 30px;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.wrapper ul li a::after {
+    position: absolute;
+    content: "";
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+    transform: scaleY(0);
+    z-index: -1;
+    transition: transform 0.3s ease;
+}
+
+.wrapper ul li a:hover {
+ text-decoration: underline;
+}
+
+#active:checked ~ .wrapper ul li a {
+    opacity: 1;
+    transform: translateX(-100px);
+    transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1);
+    transition-delay: .6s;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* ✅ Header Logo */
+header img {
+    width: 50px;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+/* ✅ Intro Section */
+.introduction {
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.introduction video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.intro-overlay {
+    position: absolute;
+    top: 25%;
+    left: 8%;
+    width: 40%;
+    line-height: 1.8;
+    color: white;
+    padding: 20px;
+}
+
+.intro-overlay p {
+    font-size: 19px;
+    font-weight: 300;
+}
+
+.intro-overlay a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    background-color: #4D7B8E;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.intro-overlay a:hover {
+    color: #4D7B8E;
+    background-color: white;
+    font-weight: 600;
+}
+.technology-stack{
+    margin-top: 60px;
+    height: 400px;
+}
+.technology-stack h1{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+
+}
+.technology-grid{
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 50px;
+    
+}
+
+}
+/* ✅ Hide responsive menu on large screens */
+@media (min-width: 1200px) {
+    .menu-btn,
+    #active {
+        display: none !important;
+    }
+    .wrapper{
+        float: right;
+
+    }
+}@media (min-width:1200px) {
+    .menu-btn,
+    #active {
+        display: none !important; /* Hide the hamburger and checkbox */
+    }
+
+    .wrapper {
+        position: static;       /* Normal flow */
+        right: auto;
+        top: auto;
+        float: right;
+        background: none;
+        height: auto;
+        width: auto;
+        transition: none;       /* No slide animation */
+    }
+
+    .wrapper ul {
+        position: static;
+        transform: none;
+        display: flex;          /* ✅ Use flex for horizontal menu */
+        justify-content: flex-end;
+        align-items: center;
+        margin: 0;
+        padding: 20px 80px 0 0; /* Space from right edge */
+    }
+
+    .wrapper ul li {
+        margin: 0;
+    }
+
+    .wrapper ul li a {
+        opacity: 1 !important;  /* Always visible */
+        transform: none !important;
+        color: white;
+        font-size: 23px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .wrapper ul li a:hover {
+        text-decoration: underline;
+    }
+    
+/* ✅ Intro Section */
+.introduction {
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.introduction video {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+}
+
+.intro-overlay {
+    position: absolute;
+    top: 30%;
+    left: 8%;
+    width: 30%;
+    line-height: 1.9;
+    color: white;
+    padding: 20px;
+}
+
+.intro-overlay p {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.intro-overlay a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    background-color: #4D7B8E;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.intro-overlay a:hover {
+    color: #4D7B8E;
+    background-color: white;
+    font-weight: 600;
+}
+.technology-grid h1{
+    font-size: 22px;
+}
+.technology-grid img{
+    width: 70px;
+    height: auto;
+}
 }
